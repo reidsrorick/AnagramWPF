@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="47-Star-Wars-4K-Wallpaper-on-WallpaperSafari.jpg" />
+    <None Remove="650622.jpg" />
+    <None Remove="Loading.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="R2D2 - Copy.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="47-Star-Wars-4K-Wallpaper-on-WallpaperSafari.jpg" />
+    <Resource Include="650622.jpg" />
+    <Resource Include="Loading.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Anagrams.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
