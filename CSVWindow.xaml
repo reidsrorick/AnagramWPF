@@ -1,0 +1,15 @@
+﻿<Window x:Class="AnagramWPF.CSVWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnagramWPF"
+        mc:Ignorable="d"
+        Title="CSVWindow" Height="450" Width="800">
+    <Grid>
+        <ComboBox x:Name="cbxOriginal" HorizontalAlignment="Left" Margin="102,83,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxOriginal_SelectionChanged"/>
+        <ListBox x:Name="lstAnagramz" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,0,0,0" SelectionChanged="lstAnagramz_SelectionChanged"/>
+        <Label x:Name="lblCbx" Content="Original Words" HorizontalAlignment="Left" Margin="117,56,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="115,176,0,0" VerticalAlignment="Top" Height="42" Width="93" Click="btnDelete_Click"/>
+    </Grid>
+</Window>

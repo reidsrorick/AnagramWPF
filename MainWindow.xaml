@@ -18,7 +18,9 @@
         <Label x:Name="lblTime" Content="Runtime: " HorizontalAlignment="Left" Margin="20,369,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblPercentage" Content="Percentage of anagrams shown:" HorizontalAlignment="Left" Margin="20,335,0,0" VerticalAlignment="Top"/>
         <MediaElement x:Name="gif" HorizontalAlignment="Left" Height="100" Margin="210,202,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="btnSave" Content="Save Word" HorizontalAlignment="Left" Margin="528,0,0,23" Width="80" Click="btnSave_Click" Height="27" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnSave" Content="Save Word" HorizontalAlignment="Left" Margin="650,0,0,23" Width="80" Click="btnSave_Click" Height="27" VerticalAlignment="Bottom" RenderTransformOrigin="0.505,0.536"/>
+        <Button x:Name="btnView" Content="View CSV" HorizontalAlignment="Left" Margin="416,0,0,21" Width="93" Click="btnView_Click" Height="28" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnResetCSV" Content="Reset" HorizontalAlignment="Left" Margin="548,0,0,10" Height="41" VerticalAlignment="Bottom" Width="63" Click="btnResetCSV_Click"/>
 
     </Grid>
 </Window>

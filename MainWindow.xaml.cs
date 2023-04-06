@@ -24,6 +24,7 @@ namespace AnagramWPF
     {
         private string word;
         private string selectedWord;
+        public static string pathy = "Anagrams.csv";
         public MainWindow()
         {
             InitializeComponent();
@@ -102,23 +103,42 @@ namespace AnagramWPF
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string path = "Anagrams.csv";
+            //pathy = "Anagrams.csv";
             string newInput = $"{word},{selectedWord}";
-            List<string> strings= new List<string>();
-            strings.Add("Original, Anagram");
-            string[] file = System.IO.File.ReadAllLines(path);
+            List<string> csvOutput= new List<string>();
+            //csvOutput.Add("Original, Anagram");
+            string[] file = System.IO.File.ReadAllLines(pathy);
             foreach (string line in file)
             {
-                strings.Add(line);
+                csvOutput.Add(line);
             }
-            strings.Add(newInput);
-            System.IO.File.WriteAllLines(path, strings.ToArray());
+            csvOutput.Add(newInput);
+            System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
             
         }
 
         private void lstbxAnagrams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedWord = lstbxAnagrams.SelectedItem.ToString();
+            if (!(lstbxAnagrams.SelectedItem == null))
+            {
+                selectedWord = lstbxAnagrams.SelectedItem.ToString();
+            }
+            
+        }
+
+        private void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            CSVWindow flarg = new CSVWindow();
+            flarg.Title = "Anagrams";
+            flarg.Show();
+        }
+
+        private void btnResetCSV_Click(object sender, RoutedEventArgs e)
+        {
+            
+            List<string> csvOutput = new List<string>();
+            csvOutput.Add("Original, Anagram");
+            System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
         }
     }
 }
