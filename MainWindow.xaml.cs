@@ -100,7 +100,6 @@ namespace AnagramWPF
             }
             return anagrams;
         }
-
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //pathy = "Anagrams.csv";
@@ -116,7 +115,6 @@ namespace AnagramWPF
             System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
             
         }
-
         private void lstbxAnagrams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(lstbxAnagrams.SelectedItem == null))
@@ -125,20 +123,21 @@ namespace AnagramWPF
             }
             
         }
-
         private void btnView_Click(object sender, RoutedEventArgs e)
         {
             CSVWindow flarg = new CSVWindow();
             flarg.Title = "Anagrams";
             flarg.Show();
         }
-
         private void btnResetCSV_Click(object sender, RoutedEventArgs e)
         {
-            
-            List<string> csvOutput = new List<string>();
-            csvOutput.Add("Original, Anagram");
-            System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
+            if (txtSpecification.Text == "707425")
+            {
+                List<string> csvOutput = new List<string>();
+                csvOutput.Add("Original, Anagram");
+                System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
+            }
+
         }
     }
 }

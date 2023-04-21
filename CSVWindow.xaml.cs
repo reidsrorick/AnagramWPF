@@ -26,7 +26,7 @@ namespace AnagramWPF
         public CSVWindow()
         {
             InitializeComponent();
-
+            
             string path = MainWindow.pathy;
             string[] csvData = File.ReadAllLines(path);
             AnagramsDict.Add("All", new List<string>());
@@ -48,6 +48,7 @@ namespace AnagramWPF
                 AnagramsDict[original].Add(anagram);
                 AnagramsDict["All"].Add(anagram);
             }
+            cbxOriginal.SelectedIndex = 0;
             
         }
 
