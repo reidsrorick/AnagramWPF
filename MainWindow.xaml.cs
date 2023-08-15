@@ -24,6 +24,9 @@ namespace AnagramWPF
     {
         private string word;
         private string selectedWord;
+        private string oldWord;
+        private List<string> anagrams;
+        
         public static string pathy = "Anagrams.csv";
         public MainWindow()
         {
@@ -51,31 +54,66 @@ namespace AnagramWPF
             //      gif.Visibility = Visibility.Visible;
             //    gif.Play();
             //}
-            string specify = txtSpecification.Text;
-            DateTime startTime = DateTime.Now;
-            List<string> anagrams = GenerateAnagrams(word);
-            double count = 0;
-            double anagramcount = anagrams.Count;
-            foreach (string anagram in anagrams)
+            if (oldWord != word)
             {
-                if (anagram.Substring(0, specify.Length) == specify)
-                {
-                    lstbxAnagrams.Items.Add(anagram);
-                    count++;
-                }
-
+                oldWord = null;
             }
-            //gif.Visibility = Visibility.Hidden;
-            lblShown.Content = $"Anagrams Shown: {count.ToString("#,##0")}";
-            lblTotal.Content = $"Total iterations for your word: {anagramcount.ToString("#,##0")}";
-            double percentage = (count / anagramcount);
-            lblPercentage.Content= $"Percentage of anagrams shown: {percentage.ToString("P2")}";
-            TimeSpan difference = DateTime.Now - startTime;
-            lblTime.Content = $"Runtime: {difference.TotalSeconds.ToString("N2")} seconds";
-            lblShown.Visibility = Visibility.Visible;
-            lblTotal.Visibility = Visibility.Visible;
-            lblTime.Visibility = Visibility.Visible;
-            lblPercentage.Visibility = Visibility.Visible;
+            else
+            {
+                string specify = txtSpecification.Text;
+                double count = 0;
+                double anagramcount = anagrams.Count;
+                DateTime startTime = DateTime.Now;
+                foreach (string anagram in anagrams)
+                {
+                    if (anagram.Substring(0, specify.Length) == specify)
+                    {
+                        lstbxAnagrams.Items.Add(anagram);
+                        count++;
+                    }
+
+                }
+                lblShown.Content = $"Anagrams Shown: {count.ToString("#,##0")}";
+                lblTotal.Content = $"Total iterations for your word: {anagramcount.ToString("#,##0")}";
+                double percentage = (count / anagramcount);
+                lblPercentage.Content = $"Percentage of anagrams shown: {percentage.ToString("P2")}";
+                TimeSpan difference = DateTime.Now - startTime;
+                lblTime.Content = $"Runtime: {difference.TotalSeconds.ToString("N2")} seconds";
+                lblShown.Visibility = Visibility.Visible;
+                lblTotal.Visibility = Visibility.Visible;
+                lblTime.Visibility = Visibility.Visible;
+                lblPercentage.Visibility = Visibility.Visible;
+            }
+            if (oldWord == null)
+            {
+                oldWord = txtWord.Text;
+                string specify = txtSpecification.Text;
+                DateTime startTime = DateTime.Now;
+                anagrams = GenerateAnagrams(word);
+                double count = 0;
+                double anagramcount = anagrams.Count;
+                foreach (string anagram in anagrams)
+                {
+                    if (anagram.Substring(0, specify.Length) == specify)
+                    {
+                        lstbxAnagrams.Items.Add(anagram);
+                        count++;
+                    }
+
+                }
+                //gif.Visibility = Visibility.Hidden;
+                lblShown.Content = $"Anagrams Shown: {count.ToString("#,##0")}";
+                lblTotal.Content = $"Total iterations for your word: {anagramcount.ToString("#,##0")}";
+                double percentage = (count / anagramcount);
+                lblPercentage.Content = $"Percentage of anagrams shown: {percentage.ToString("P2")}";
+                TimeSpan difference = DateTime.Now - startTime;
+                lblTime.Content = $"Runtime: {difference.TotalSeconds.ToString("N2")} seconds";
+                lblShown.Visibility = Visibility.Visible;
+                lblTotal.Visibility = Visibility.Visible;
+                lblTime.Visibility = Visibility.Visible;
+                lblPercentage.Visibility = Visibility.Visible;
+            }
+            
         }
         static List<string> GenerateAnagrams(string word)
         {
@@ -104,7 +142,7 @@ namespace AnagramWPF
         {
             //pathy = "Anagrams.csv";
             string newInput = $"{word},{selectedWord}";
-            List<string> csvOutput= new List<string>();
+            List<string> csvOutput = new List<string>();
             //csvOutput.Add("Original, Anagram");
             string[] file = System.IO.File.ReadAllLines(pathy);
             foreach (string line in file)
@@ -113,7 +151,7 @@ namespace AnagramWPF
             }
             csvOutput.Add(newInput);
             System.IO.File.WriteAllLines(pathy, csvOutput.ToArray());
-            
+
         }
         private void lstbxAnagrams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -121,7 +159,7 @@ namespace AnagramWPF
             {
                 selectedWord = lstbxAnagrams.SelectedItem.ToString();
             }
-            
+
         }
         private void btnView_Click(object sender, RoutedEventArgs e)
         {
